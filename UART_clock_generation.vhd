@@ -7,14 +7,14 @@ entity UART_clock_generation is
 	generic (number_of_clock_cycles : integer := 9); -- 
 	port( main_clock: in std_logic;
 	 	reset : in std_logic;
-	 	uart_clock : out std_logic
-		);
+	 	uart_clock : out std_logic -- This is bad nomenclature.It should more appropriately have been called slower_clock.
+		);						   -- Since we use this module to make a UART clock it has been given this name.
 end entity;
 
 architecture UART_clock_generation_architecture of UART_clock_generation is 
 
-signal pos_count :integer ;
-signal neg_count :integer ;
+signal pos_count :integer ;		-- Counts the number of positive edges
+signal neg_count :integer ;		-- Counts the number of negative edges
 begin
 
 process(main_clock,reset)
